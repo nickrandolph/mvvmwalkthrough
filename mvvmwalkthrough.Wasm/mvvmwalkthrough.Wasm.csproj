@@ -37,11 +37,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
     <PackageReference Include="Uno.Extensions.Logging.WebAssembly.Console" Version="1.0.1" />
     <PackageReference Include="Uno.WinUI.WebAssembly" Version="3.8.0-dev.10" />
     <PackageReference Include="Uno.WinUI.RemoteControl" Version="3.8.0-dev.10" Condition="'$(Configuration)'=='Debug'" />
-    <PackageReference Include="Uno.Wasm.Bootstrap" Version="1.3.4" />
-    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="1.3.4" />
+    <PackageReference Include="Uno.Wasm.Bootstrap" Version="2.0.2" />
+    <PackageReference Include="Uno.Wasm.Bootstrap.DevServer" Version="2.0.2" />
   </ItemGroup>
   <Import Project="..\mvvmwalkthrough.Shared\mvvmwalkthrough.Shared.projitems" Label="Shared" Condition="Exists('..\mvvmwalkthrough.Shared\mvvmwalkthrough.Shared.projitems')" />
 </Project>
