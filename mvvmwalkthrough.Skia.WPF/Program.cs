@@ -1,0 +1,3 @@
+namespace mvvmwalkthrough.Skia.Gtk
+{
+}
