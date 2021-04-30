@@ -5,9 +5,103 @@
     xmlns:local="using:mvvmwalkthrough"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<TextBlock Text="Hello, world!" Margin="20" FontSize="30" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        
+        <StackPanel>
+            <!--<TextBlock Text="{Binding WelcomeText}" Margin="20" FontSize="30" />
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Register" Command="{Binding RegisterCommand}"/>
+                <Button Content="Register Not Default" Command="{Binding RegisterNonDefaultCommand}"/>
+                <Button Content="Register Another" Command="{Binding RegisterAnotherCommand}"/>
+                <Button Content="Register Async" Command="{Binding RegisterAsyncCommand}"/>
+            </StackPanel>-->
+            <StackPanel Orientation="Horizontal">
+                <TextBox PlaceholderText="Name" Text="{Binding SenderName, Mode=TwoWay}" Width="300"/>
+                <TextBox PlaceholderText="Channel name" Text="{Binding ChannelName, Mode=TwoWay}" Width="300"/>
+                <Button Content="Add" Command="{Binding AddChatCommand}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox PlaceholderText="Broadcast message" Text="{Binding BroadcastMessage, Mode=TwoWay}" Width="300"/>
+                <Button Content="Broadcast" Command="{Binding BroadcastCommand}"/>
+            </StackPanel>
+            <Button Content="Delete Chat" Command="{Binding DeleteChatCommand}"/>
+            <!--<Button Content="Unregister" Command="{Binding UnregisterCommand}"/>
+            <Button Content="Change" Command="{Binding ChangeWelcomeCommand}"/>
+            <Button Content="Background Change" Command="{Binding BackgroundChangeWelcomeCommand}"/>
+
+            <Button Content="ChangeAsync" Command="{Binding AsyncChangeWelcomeCommand}"/>-->
+        </StackPanel>
+
+        <Border BorderBrush="Pink" BorderThickness="1" Grid.Row="1">
+         <ItemsRepeaterScrollHost Grid.Row="1" >
+            <ItemsRepeaterScrollHost.ScrollViewer>
+            <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ItemsRepeater ItemsSource="{Binding Chats}">
+                        <ItemsRepeater.Layout>
+                            <StackLayout Orientation="Horizontal" Spacing="8"/>
+                        </ItemsRepeater.Layout>
+                        <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="200">
+                                <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition />
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                    <Border BorderThickness="1" Grid.RowSpan="2"  BorderBrush="Black"/>
+                                        <TextBlock FontWeight="Bold" Margin="2,0" TextWrapping="Wrap" >
+                                            <Run Text="{Binding Sender}"/><Run Text=" is listening to channel "/><Run Text="{Binding Channel}" />
+                                        </TextBlock>
+                                        <!--<ItemsControl Margin="1,4,1,1" Grid.Row="1" ItemsSource="{Binding Messages}" ScrollViewer.VerticalScrollBarVisibility="Auto">-->
+                                        <ItemsRepeaterScrollHost Margin="1,4,1,1"  Grid.Row="1" >
+                                                <ItemsRepeaterScrollHost.ScrollViewer>
+                                                    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                                        <ItemsRepeater ItemsSource="{Binding Messages}">
+                                                        <!--<ItemsRepeater.Layout>
+                                                            <StackLayout Orientation="Vertical" Spacing="8"/>
+                                                        </ItemsRepeater.Layout>-->
+                                                        <ItemsRepeater.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid Margin="2">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Grid.Column="0" Foreground="Blue" Visibility="{Binding IsSender, Converter={StaticResource BoolToVisibilityConverter}}">
+                                                            <Run Text="{Binding Message.Sender}" /><Run Text=":"/>
+                                                        </TextBlock>
+                                                        <TextBlock Grid.Column="1" Margin="2,0"  Text="{Binding Message.Message}" Visibility="{Binding IsSender, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                                        <TextBlock Grid.Column="1" Margin="2,0"  Text="{Binding Message.Message}" TextAlignment="Right" HorizontalAlignment="Right" Visibility="{Binding IsSender, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}" />
+                                                        <TextBlock Grid.Column="2" Foreground="Green" TextAlignment="Right" HorizontalAlignment="Right" Visibility="{Binding IsSender, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}">
+                                                            <Run Text=":"/><Run Text="{Binding Message.Sender}" />
+                                                        </TextBlock>
+                                                    </Grid>
+                                                </DataTemplate>
+                                                        </ItemsRepeater.ItemTemplate>
+                                                    </ItemsRepeater>
+                                                </ScrollViewer>
+                                            </ItemsRepeaterScrollHost.ScrollViewer>
+                                        </ItemsRepeaterScrollHost>
+                                        <RelativePanel Grid.Row="2" HorizontalAlignment="Stretch" >
+                                            <TextBox Text="{Binding MessageToSend, Mode=TwoWay}" RelativePanel.LeftOf="SendButton" RelativePanel.AlignLeftWithPanel="True" Margin="1"/>
+                                            <Button x:Name="SendButton" Content="Send" RelativePanel.AlignRightWithPanel="True" Margin="1" Command="{Binding SendCommand}"/>
+                                </RelativePanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                </ItemsRepeater>
+            </ScrollViewer>
+            </ItemsRepeaterScrollHost.ScrollViewer>
+        </ItemsRepeaterScrollHost>
+        </Border>
     </Grid>
 </Page>

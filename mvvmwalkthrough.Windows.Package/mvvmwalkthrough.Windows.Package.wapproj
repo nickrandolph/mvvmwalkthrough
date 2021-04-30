@@ -74,11 +74,17 @@
     <EntryPointProjectUniqueName>..\mvvmwalkthrough.Windows.Desktop\mvvmwalkthrough.Windows.Desktop.csproj</EntryPointProjectUniqueName>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm">
+      <Version>7.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="CommunityToolkit.WinUI">
+      <Version>7.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="CommunityToolkit.WinUI.UI">
+      <Version>7.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.6">
       <IncludeAssets>build</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Toolkit.Mvvm">
-      <Version>7.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />

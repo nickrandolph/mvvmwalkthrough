@@ -4,6 +4,7 @@
     <OutputType Condition="'$(Configuration)'=='Release'">WinExe</OutputType>
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <ItemGroup Condition="exists('..\mvvmwalkthrough.UWP')">
     <EmbeddedResource Include="..\mvvmwalkthrough.UWP\Package.appxmanifest" LogicalName="Package.appxmanifest" />
@@ -14,9 +15,9 @@
     <UpToDateCheckInput Include="..\mvvmwalkthrough.Shared\**\*.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="7.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
     <PackageReference Include="Uno.WinUI.Skia.Gtk" Version="3.8.0-dev.10" />
     <PackageReference Include="Uno.WinUI.RemoteControl" Version="3.8.0-dev.10" Condition="'$(Configuration)'=='Debug'" />
   </ItemGroup>

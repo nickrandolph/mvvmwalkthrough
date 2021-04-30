@@ -12,6 +12,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ResourcesDirectory>..\mvvmwalkthrough.Shared\Strings</ResourcesDirectory>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -115,7 +116,7 @@
     <BundleResource Include="Resources\Fonts\uno-fluentui-assets.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Toolkit.Mvvm">
+    <PackageReference Include="CommunityToolkit.Mvvm">
       <Version>7.0.1</Version>
     </PackageReference>
     <PackageReference Include="Uno.WinUI" Version="3.8.0-dev.10" />

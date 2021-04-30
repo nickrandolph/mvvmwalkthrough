@@ -5,9 +5,10 @@
     <OutputType Condition="'$(Configuration)'=='Debug'">Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.0.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="7.0.1" />
     <PackageReference Include="Uno.WinUI.Skia.Wpf" Version="3.8.0-dev.10" />
     <PackageReference Include="Uno.WinUI.RemoteControl" Version="3.8.0-dev.10" Condition="'$(Configuration)'=='Debug'" />
   </ItemGroup>
