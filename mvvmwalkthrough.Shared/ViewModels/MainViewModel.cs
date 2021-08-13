@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Linq;
 using Uno.Extensions.Specialized;
+using System.Reactive.Linq;
+using System.Windows.Interop;
 
 namespace mvvmwalkthrough.ViewModels
 {
@@ -49,18 +51,30 @@ namespace mvvmwalkthrough.ViewModels
             Messages.Add(new MessageWrapper(message, message.Sender == Sender));
         }
 
+        IDisposable obs = null;
         public void Init()
 
         {
-            if (Channel is not null)
-            {
-                Messenger.RegisterAll(this, Channel);
-            }
-            else
-            {
-                Messenger.RegisterAll(this);
+            obs = Observable.FromEvent<ChatMessage>(
+                cb => Messenger.Register<ChatMessage>(this, (obj, msg) => cb(msg)),
+                cb => Messenger.Unregister<ChatMessage>(this))
+                .Where(msg => msg.Message.Contains("a"))
+                .Subscribe(
+                msg =>
+                {
+                    Messages.Add(new MessageWrapper(msg, msg.Sender == Sender));
+                    obs?.Dispose();
+                }
+                );
+            //if (Channel is not null)
+            //{
+            //    Messenger.RegisterAll(this, Channel);
+            //}
+            //else
+            //{
+            //    Messenger.RegisterAll(this);
 
-            }
+            //}
         }
     }
 
